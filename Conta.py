@@ -8,8 +8,25 @@ class Conta:
         self.saldo = saldo
         self.limite = limite
         self.historico = Historico()
+        self._titular = cliente
+        self._saldo = saldo
 
-
+    @property
+    def saldo(self):
+        return self._saldo
+    @saldo.setter
+    def saldo(self, saldo):
+        if(saldo < 0):
+            print('saldo não pode ser negativo!')
+        else:
+            self._saldo = saldo
+    
+    
+    def getTitular(self):
+        print(self._saldo)
+        return self._saldo
+    def setTitular(self, titular):
+        self.titular = titular
 
     def criar_conta(self, numero, titular, saldo, limite):
         """
