@@ -1,15 +1,19 @@
 from Historico import *
+
 class Conta:
     #TODO
-    def	__init__(self,	numero,	cliente, saldo, limite):
+    _totalContas = 0 #tornei o atributo da classe privado acrescentando o _. Para chamá-lo, será adicionado um getter.
+    def	__init__(self,	numero,	cliente, saldo, limite): #atributos da instância
 
         self.numero	= numero
         self.titular = cliente
         self.saldo = saldo
         self.limite = limite
         self.historico = Historico()
-        self._titular = cliente
+        self.titular = cliente
         self._saldo = saldo
+        # self.totalContas += 1      #atributo de classe, assim não vai funcionar. é necessário chamar a variável pela classe, não como se fosse pela instância:
+        Conta._totalContas += 1
 
     @property
     def saldo(self):
@@ -27,6 +31,10 @@ class Conta:
         return self._saldo
     def setTitular(self, titular):
         self.titular = titular
+
+    @classmethod
+    def getTotalContas(cls):
+        return cls._totalContas
 
     def criar_conta(self, numero, titular, saldo, limite):
         """
